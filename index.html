@@ -1,15 +1,74 @@
+<style>
+    .cr-policy-toggle {
+        display: none;
+    }
+
+    .cr-policy-header {
+        background-color: #a8322d;
+        color: #ffffff;
+        padding: 10px 16px;
+        font-weight: 700;
+        font-size: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+        transition: background-color 0.2s ease;
+    }
+
+    .cr-policy-header:hover {
+        background-color: #912a25;
+    }
+
+    .cr-policy-chevron {
+        font-size: 11px;
+        background-color: rgba(0, 0, 0, 0.25);
+        padding: 2px 6px;
+        border-radius: 3px;
+        display: inline-block;
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .cr-policy-body {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        padding: 0 16px;
+        transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+            opacity 0.35s ease,
+            padding 0.35s ease;
+    }
+
+    /* Expanded State */
+    .cr-policy-toggle:checked~.cr-policy-body {
+        max-height: 1200px;
+        opacity: 1;
+        padding: 16px;
+    }
+
+    .cr-policy-toggle:checked~.cr-policy-header .cr-policy-chevron {
+        transform: rotate(180deg);
+    }
+</style>
+
 <div
     style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: inherit; background-color: transparent; border: 1px solid #a8322d; border-radius: 4px; margin-bottom: 20px; overflow: hidden; font-size: 13px; line-height: 1.5;">
 
-    <!-- Header Banner (Keeps your Cardinal Red branding) -->
-    <div
-        style="background-color: #a8322d; color: #ffffff; padding: 10px 16px; font-weight: 700; font-size: 14px; display: flex; justify-content: space-between; align-items: center;">
-        <span>Hardware Request — Policy &amp; Approval Guidelines</span>
-        <span style="font-size: 11px; font-weight: 400; opacity: 0.9;">Read Before Submitting</span>
-    </div>
+    <!-- Hidden Checkbox Controls State -->
+    <input type="checkbox" id="cr-hardware-policy-toggle" class="cr-policy-toggle">
 
-    <!-- Body Container (Transparent background, inherits page text color) -->
-    <div style="padding: 16px; background-color: transparent; color: inherit;">
+    <!-- Clickable Header Banner -->
+    <label for="cr-hardware-policy-toggle" class="cr-policy-header">
+        <span>Hardware Request — Policy &amp; Approval Guidelines</span>
+        <span style="display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 400;">
+            <span style="opacity: 0.9;">Read Before Submitting</span>
+            <span class="cr-policy-chevron">&#9660;</span>
+        </span>
+    </label>
+
+    <!-- Smoothly Expanding Body Container -->
+    <div class="cr-policy-body" style="background-color: transparent; color: inherit;">
 
         <!-- Intro Note -->
         <p style="margin: 0 0 12px 0; color: inherit; font-size: 13px;">
@@ -75,10 +134,10 @@
             <ul style="margin: 0; padding-left: 18px; color: inherit;">
                 <li style="margin-bottom: 4px;"><strong>Valid Reason:</strong> Provide a valid business justification
                     explaining why a MacBook is required.</li>
-                <li><strong>Support &amp; Risk Acknowledgment:</strong> confirming you understand IT will
-                    have trouble supporting Mac and our software does not fully support macOS, key Cardinal tools such
-                    as <strong>OfficeConnect, Check Scanning</strong> are incompatible with Mac operating systems, and
-                    you accept these risks.</li>
+                <li><strong>Support &amp; Risk Acknowledgment:</strong> Confirming you understand IT will have trouble
+                    supporting Mac and our software does not fully support macOS, key Cardinal tools such as
+                    <strong>OfficeConnect, Check Scanning</strong> are incompatible with Mac operating systems, and you
+                    accept these risks.</li>
             </ul>
         </div>
 
